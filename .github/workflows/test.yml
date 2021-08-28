@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: '0 10 * * *'
+    - cron: '0 2 * * *'
 
 jobs:
   ci:
@@ -13,14 +13,14 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        php-version: [ '7.3', '7.4', '8.0' ]
-        sw-version: [ 'v4.5.11', 'v4.6.7', 'v4.7.0', 'master' ]
+        php-version: [ '7.4', '8.0' ]
+        sw-version: [ 'v4.5.11', 'v4.6.7', 'v4.7.1', 'master' ]
       max-parallel: 12
       fail-fast: false
     env:
       SW_VERSION: ${{ matrix.sw-version }}
       MYSQL_VERSION: '5.7'
-      YASD_VERSION: 'v0.3.8'
+      YASD_VERSION: 'v0.3.9'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -71,6 +71,7 @@ jobs:
           docker run --name redis -p 6379:6379 -d redis
           docker run -d --name dev-consul -e CONSUL_BIND_INTERFACE=eth0 -p 8500:8500 consul
           docker run --name nsq -p 4150:4150 -p 4151:4151 -p 4160:4160 -p 4161:4161 -p 4170:4170 -p 4171:4171 --entrypoint /bin/nsqd -d nsqio/nsq:latest
+          docker run -d --restart=always --name rabbitmq -p 4369:4369 -p 5672:5672 -p 15672:15672 -p 25672:25672 rabbitmq:management-alpine
           docker build --tag grpc-server:latest src/grpc-client/tests/Mock
           docker run -d --name grpc-server -p 50051:50051 grpc-server:latest
           docker build -t tcp-server:latest .travis/tcp_server
@@ -84,3 +85,4 @@ jobs:
           composer analyse src
           composer test -- --exclude-group NonCoroutine
           vendor/bin/phpunit --group NonCoroutine
+          vendor/bin/phpunit src/filesystem --group NonCoroutine

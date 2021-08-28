@@ -1,5 +1,75 @@
 # 版本更新記錄
 
+# v2.2.5 - 2021-08-23
+
+## 修復
+
+- [#3959](https://github.com/hyperf/hyperf/pull/3959) 修復驗證器規則 `date` 在入參為 `string` 時，無法正常使用的問題。
+- [#3960](https://github.com/hyperf/hyperf/pull/3960) 修復協程風格服務下，`Crontab` 無法平滑關閉的問題。
+
+## 新增
+
+- [code-generator](https://github.com/hyperf/code-generator) 新增組件 `code-generator`，可以用來將 `Doctrine` 註解轉化為 `PHP8` 的原生註解。
+
+## 優化
+
+- [#3957](https://github.com/hyperf/hyperf/pull/3957) 使用命令 `gen:model` 生成 `getAttribute` 註釋時，支持基於 `@return` 註釋返回對應的類型。
+
+# v2.2.4 - 2021-08-16
+
+## 修復
+
+- [#3925](https://github.com/hyperf/hyperf/pull/3925) 修復 `Nacos` 開啟 `light beat` 功能後，心跳失敗的問題。
+- [#3926](https://github.com/hyperf/hyperf/pull/3926) 修復配置項 `config_center.drivers.nacos.client` 無法正常工作的問題。
+
+## 新增
+
+- [#3924](https://github.com/hyperf/hyperf/pull/3924) 為 `Consul` 服務註冊中心增加配置項 `services.drivers.consul.check`。
+- [#3932](https://github.com/hyperf/hyperf/pull/3932) 為 `AMQP` 消費者增加重新入隊列的配置，允許用户返回 `NACK` 後，消息重入隊列。
+- [#3941](https://github.com/hyperf/hyperf/pull/3941) 允許多路複用的 `RPC` 組件使用註冊中心的能力。
+- [#3947](https://github.com/hyperf/hyperf/pull/3947) 新增方法 `Str::mask`，允許用户對一段文本某段內容打馬賽克。
+
+## 優化
+
+- [#3944](https://github.com/hyperf/hyperf/pull/3944) 封裝了讀取 `Aspect` 元數據的方法。
+
+# v2.2.3 - 2021-08-09
+
+## 修復
+
+- [#3897](https://github.com/hyperf/hyperf/pull/3897) 修復因為 `lightBeatEnabled` 導致心跳失敗，進而導致 `Nacos` 服務註冊多次的問題。
+- [#3905](https://github.com/hyperf/hyperf/pull/3905) 修復 `AMQP` 連接在關閉時導致空指針的問題。
+- [#3906](https://github.com/hyperf/hyperf/pull/3906) 修復 `AMQP` 連接關閉時，因已經銷燬所有等待通道而導致失敗的問題。
+- [#3908](https://github.com/hyperf/hyperf/pull/3908) 修復使用了以 `CoordinatorManager` 為基礎的循環邏輯時，自定義進程無法正常重啟的問題。
+
+# v2.2.2 - 2021-08-03
+
+## 修復
+
+- [#3872](https://github.com/hyperf/hyperf/pull/3872) [#3873](https://github.com/hyperf/hyperf/pull/3873) 修復使用 `Nacos` 服務時，因為沒有使用默認的組名，導致心跳失敗的問題。
+- [#3877](https://github.com/hyperf/hyperf/pull/3877) 修復 `Nacos` 服務，心跳會被註冊多次的問題。
+- [#3879](https://github.com/hyperf/hyperf/pull/3879) 修復熱更新因為代理類被覆蓋，導致無法正常使用的問題。
+
+## 優化
+
+- [#3877](https://github.com/hyperf/hyperf/pull/3877) 為 `Nacos` 服務，增加 `lightBeatEnabled` 支持。
+
+# v2.2.1 - 2021-07-27
+
+## 修復
+
+- [#3750](https://github.com/hyperf/hyperf/pull/3750) 修復使用 `SocketIO` 時，由於觸發了一個不存在的命名空間，而導致致命錯誤的問題。
+- [#3828](https://github.com/hyperf/hyperf/pull/3828) 修復在 `PHP 8.0` 版本中，無法對 `Hyperf\Redis\Redis` 使用懶加載注入的問題。
+- [#3845](https://github.com/hyperf/hyperf/pull/3845) 修復 `watcher` 組件無法在 `v2.2` 版本中正常使用的問題。
+- [#3848](https://github.com/hyperf/hyperf/pull/3848) 修復 `Nacos` 組件無法像 `v2.1` 版本註冊自身到 `Nacos` 服務中的問題。
+- [#3866](https://github.com/hyperf/hyperf/pull/3866) 修復 `Nacos` 實例無法正常註冊元數據的問題。
+
+## 優化
+
+- [#3763](https://github.com/hyperf/hyperf/pull/3763) 使 `JsonResource::wrap()` 和 `JsonResource::withoutWrapping()` 支持鏈式調用。
+- [#3843](https://github.com/hyperf/hyperf/pull/3843) 在 `Nacos` 註冊服務時，根據 `HTTP` 響應的返回碼和數據協同判斷，以確保是否已註冊過。
+- [#3854](https://github.com/hyperf/hyperf/pull/3854) 為文件下載方法支持 `RFC 5987`，它允許使用 `UTF-8` 格式和 `URL` 格式化。
+
 # v2.1.23 - 2021-07-12
 
 ## 優化

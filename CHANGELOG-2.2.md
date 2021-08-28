@@ -1,10 +1,84 @@
-# v2.2.1 - TBD
+# v2.2.6 - TBD
 
 ## Fixed
 
+- [#3969](https://github.com/hyperf/hyperf/pull/3969) Fixed type error when using `Hyperf\Validation\Rules\Unique::__toString()` in PHP8.
+- [#3979](https://github.com/hyperf/hyperf/pull/3979) Fixed bug that timeout property does not work in circuit breaker.
+- [#3986](https://github.com/hyperf/hyperf/pull/3986) Fixed OSS hook failed when using `SWOOLE_HOOK_NATIVE_CURL`.
+
+## Added
+
+- [#3987](https://github.com/hyperf/hyperf/pull/3987) Support delayed message exchange for AMQP.
+
+# v2.2.5 - 2021-08-23
+
+## Fixed
+
+- [#3959](https://github.com/hyperf/hyperf/pull/3959) Fixed validate rule `date` does not work as expected when the value isn't string.
+- [#3960](https://github.com/hyperf/hyperf/pull/3960) Fixed bug that crontab cannot be closed safely in coroutine style server.
+
+## Added
+
+- [code-generator](https://github.com/hyperf/code-generator) Added `code-generator` which used to regenerate classes with `Attributes` instead of `Doctrine Annotations`.
+
+## Optimized
+
+- [#3957](https://github.com/hyperf/hyperf/pull/3957) Support generate the type of getAttribute with `@return` for command `gen:model`.
+
+# v2.2.4 - 2021-08-16
+
+## Fixed
+
+- [#3925](https://github.com/hyperf/hyperf/pull/3925) Fixed bug that heartbeat failed caused by nacos light beat enabled.
+- [#3926](https://github.com/hyperf/hyperf/pull/3926) Fixed bug that the config of `config_center.drivers.nacos.client` does not work.
+
+## Added
+
+- [#3924](https://github.com/hyperf/hyperf/pull/3924) Added health check parameters for consul service register.
+- [#3932](https://github.com/hyperf/hyperf/pull/3932) Support requeue the message when return `NACK` for `AMQP` consumer.
+- [#3941](https://github.com/hyperf/hyperf/pull/3941) Support service register for `rpc-multiplex`.
+- [#3947](https://github.com/hyperf/hyperf/pull/3947) Added method `Str::mask` which used to replace chars from a string by a given char.
+
+## Optimized
+
+- [#3944](https://github.com/hyperf/hyperf/pull/3944) Encapsulated the code for reading aspect meta properties.
+
+# v2.2.3 - 2021-08-09
+
+## Fixed
+
+- [#3897](https://github.com/hyperf/hyperf/pull/3897) Fixed bug that nacos instance will be registered more than once, because heartbeat failed caused by light beat enabled.
+- [#3905](https://github.com/hyperf/hyperf/pull/3905) Fixed null pointer exception when closing AMQPConnection.
+- [#3906](https://github.com/hyperf/hyperf/pull/3906) Fixed bug that close connection failed caused by wait channels flushed.
+- [#3908](https://github.com/hyperf/hyperf/pull/3908) Fixed bug that the process couldn't be restarted caused by loop which using `CoordinatorManager`.
+
+# v2.2.2 - 2021-08-03
+
+## Fixed
+
+- [#3872](https://github.com/hyperf/hyperf/pull/3872) [#3873](https://github.com/hyperf/hyperf/pull/3873) Fixed bug that heartbeat failed when using nacos without default group.
+- [#3877](https://github.com/hyperf/hyperf/pull/3877) Fixed bug that heartbeat will be registered more than once.
+- [#3879](https://github.com/hyperf/hyperf/pull/3879) Fixed bug that `watcher` does not work caused by proxies replaced.
+
+## Optimized
+
+- [#3877](https://github.com/hyperf/hyperf/pull/3877) Support `lightBeatEnabled` for Nacos heartbeat.
+
+# v2.2.1 - 2021-07-27
+
+## Fixed
+
+- [#3750](https://github.com/hyperf/hyperf/pull/3750) Fixed fatal error which caused by dispatching a non exist namespace when using `socket-io`.
 - [#3828](https://github.com/hyperf/hyperf/pull/3828) Fixed bug that lazy inject does not work for `Hyperf\Redis\Redis` in `PHP8.0`.
 - [#3845](https://github.com/hyperf/hyperf/pull/3845) Fixed bug that `watcher` does not work for `v2.2`.
 - [#3848](https://github.com/hyperf/hyperf/pull/3848) Fixed bug that the usage of registering itself like `nacos v2.1` does not work.
+- [#3866](https://github.com/hyperf/hyperf/pull/3866) Fixed bug that the metadata of nacos instance can't be registered successfully.
+
+## Optimized
+
+- [#3763](https://github.com/hyperf/hyperf/pull/3763) Support chained calls for `JsonResource::wrap()` and `JsonResource::withoutWrapping()`.
+- [#3843](https://github.com/hyperf/hyperf/pull/3843) Check the status code and body of the response to ensure whether the instance already be registered.
+- [#3854](https://github.com/hyperf/hyperf/pull/3854) Support RFC 5987 for `Hyperf\HttpServer\Contract\ResponseInterface::download()` which allows utf-8 encoding, percentage encoded (url-encoded).
 
 # v2.2.0 - 2021-07-19
 
